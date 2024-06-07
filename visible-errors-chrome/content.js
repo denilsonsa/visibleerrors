@@ -190,7 +190,9 @@
 	}, false);
 	
 	// get hostname match list from prefs
-	chrome.extension.sendRequest({cmd: "get_prefs"}, function(response) {
-	  prefs = response;
-	});	
+	chrome.storage.local.get(["hostlist"], function(items){
+		prefs = {
+			hostlist: items.hostlist || ''
+		};
+	});
 })();
